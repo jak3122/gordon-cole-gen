@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Cole Reaction Generator{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form enctype="multipart/form-data" method="post" action="/upload">
+                <p class="input-area">
+                    <input name="file-upload" id="file-upload" type="file">
+                </p>
+                <p>
+                    or
+                </p>
+                <p class="input-area">
+                    <label for="youtube-link">Youtube Link</label>
+                    <input name="youtube-link" id="youtube-link" type="text" size="40">
+                </p>
+                <p>
+                    <input type="submit" value="Create Video">
+                </p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

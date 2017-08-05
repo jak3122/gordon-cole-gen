@@ -1,0 +1,80 @@
+@font-face {
+    font-family: TwinPeaks;
+    src: url('/static/public/fonts/twin_peaks.otf');
+    font-weight: bold;
+}
+
+body {
+    background-image: url('/static/public/img/cole-stencil.png');
+    background-repeat: no-repeat;
+    font-family: 'TwinPeaks';
+    background-position: right 60px top 70px;
+    background-color: black;
+    font-size: 17px;
+}
+
+.container {
+    margin-top: 60px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.98);
+    box-shadow: 10px 10px 15px 5px #555;
+}
+
+input[type=file] {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.col-lg-12 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form {
+    padding: 80px;
+    margin: 20px;
+    border: 2px solid black;
+}
+
+p {
+    margin: 0 auto;
+    width: 600px;
+    padding: 10px;
+    /* border: 2px solid black; */
+}
+
+.peaks-font {
+    font-family: 'TwinPeaks';
+    font-size: 80px;
+    color: black;
+    font-style: italic;
+    letter-spacing: 4px;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+p.input-area {
+    background-color: #ddd;
+}
+
+input#youtube-link {
+    width: 300px;
+}
+
+.banner-text {
+    color: black;
+    text-decoration: none;
+    position: relative;
+}
+
+.banner-text:hover {
+    color: black;
+    text-decoration: none;
+    bottom: -2px;
+    right: -2px;
+}
+
+.banner-text:focus {
+    text-decoration: none;
+}

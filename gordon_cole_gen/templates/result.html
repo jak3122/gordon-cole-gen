@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Result{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/result.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% if is_ready %}
+                <video controls src="{{ video_src }}">
+                    <a href="{{ video_src }}">
+                        Download the video
+                    </a>
+                </video>
+            {% else %}
+                <p>
+                    Your video is being created.
+                </p>
+                <p>
+                    Refresh the page
+                    in a couple minutes to see if it's ready.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
