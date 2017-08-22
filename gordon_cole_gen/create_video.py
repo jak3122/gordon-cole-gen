@@ -55,7 +55,31 @@ class ColeVideoCreator(object):
         final_clip.audio = final_audio
         # final_clip.resize(0.25)
         final_clip.write_videofile(output_filename, fps=24, preset="ultrafast")
-        # final_clip.preview()
+        # clean up to prevent zombie ffmpeg processes
+        tv_clip.reader.close()
+        self.start_clip.reader.close()
+        self.cole_lean_clip.reader.close()
+        self.tv_3_clip.reader.close()
+        self.watching_tv_clip.reader.close()
+        self.albert_clip.reader.close()
+        self.wth_clip.reader.close()
+
+
+        self.start_clip.audio.reader.close_proc()
+        self.cole_lean_clip.audio.reader.close_proc()
+        self.tv_3_clip.audio.reader.close_proc()
+        self.watching_tv_clip.audio.reader.close_proc()
+        self.albert_clip.audio.reader.close_proc()
+        self.wth_clip.audio.reader.close_proc()
+
+        tv_clip.__del__()
+        self.start_clip.__del__()
+        self.cole_lean_clip.__del__()
+        self.tv_3_clip.__del__()
+        self.watching_tv_clip.__del__()
+        self.albert_clip.__del__()
+        self.wth_clip.__del__()
+
         return output_filename
 
     def turn_on_tv_clip(self, tv_clip):
@@ -127,7 +151,8 @@ class YoutubeDownloader(object):
         return duration_seconds <= 60
 
 
-celery_app = Celery('create_video', backend='redis://localhost', broker='pyamqp://guest@localhost//')
+#celery_app = Celery('create_video', backend='redis://localhost', broker='pyamqp://guest@localhost//')
+celery_app = Celery('create_video', backend='redis://localhost', broker='redis://localhost')
 
 
 @celery_app.task
@@ -144,6 +169,7 @@ def create_cole_video_task(self, path):
     output_filename = './gordon_cole_gen/static/videos/' + filename
     creator = ColeVideoCreator()
     outpath = creator.create_cole_video(path, output_filename=output_filename)
+    del creator
     public_path = '/static/videos/' + filename
     # red.publish('video-'+self.request.id, 'reload')
     return public_path
